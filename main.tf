@@ -91,12 +91,12 @@ data "azurerm_kubernetes_service_versions" "current" {
   version_prefix = var.kube_version_prefix
 }
 
-resource "azurerm_kubernetes_cluster" "aks-fw" {
-  name                    = "aks-fw"
+resource "azurerm_kubernetes_cluster" "aks-private-fw" {
+  name                    = "aks-private-fw"
   location                = var.location
   kubernetes_version      = data.azurerm_kubernetes_service_versions.current.latest_version
   resource_group_name     = azurerm_resource_group.kube.name
-  dns_prefix              = "aks-fw"
+  dns_prefix              = "aks-private-fw"
   private_cluster_enabled = true
 
   default_node_pool {
@@ -124,5 +124,5 @@ resource "azurerm_kubernetes_cluster" "aks-fw" {
 resource "azurerm_role_assignment" "netcontributor" {
   role_definition_name = "Network Contributor"
   scope                = module.kube_network.subnet_ids["aks-subnet"]
-  principal_id         = azurerm_kubernetes_cluster.aks-fw.identity[0].principal_id
+  principal_id         = azurerm_kubernetes_cluster.aks-private-fw.identity[0].principal_id
 }

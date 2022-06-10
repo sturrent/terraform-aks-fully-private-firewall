@@ -25,7 +25,7 @@ variable "kube_version_prefix" {
 
 variable "kube_resource_group_name" {
   description = "The resource group name to be created"
-  default     = "aks-fw-rg"
+  default     = "aks-private-fw-rg"
 }
 
 variable "nodepool_nodes_count" {
