@@ -5,12 +5,12 @@ variable "location" {
 
 variable "vnet_resource_group_name" {
   description = "The resource group name to be created"
-  default     = "networks"
+  default     = "networks-private"
 }
 
 variable "hub_vnet_name" {
   description = "Hub VNET name"
-  default     = "hub1-firewalvnet"
+  default     = "hub1-firewallvnet"
 }
 
 variable "kube_vnet_name" {
